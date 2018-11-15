@@ -1,0 +1,22 @@
+server:
+  port: 8080
+  compression:
+    enabled: true
+    mime-types: application/json
+  servlet:
+    session:
+      cookie:
+        http-only: true
+
+spring:
+  application:
+    name: Kotlin Starter
+  profiles:
+    active: development
+    include: swagger
+
+logging:
+  level:
+    root: info
+    org.springframework: info
+    ru.steklopod: debug
