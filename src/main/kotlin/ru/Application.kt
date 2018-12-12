@@ -5,8 +5,8 @@ import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 import org.springframework.context.annotation.Bean
-import ru.steklopod.Customer
-import ru.steklopod.CustomerRepository
+import ru.steklopod.model.Customer
+import ru.steklopod.repositories.CustomerRepository
 
 fun main(args: Array<String>) {
 	runApplication<Application>(*args)
@@ -22,9 +22,9 @@ class Application {
 			// save a couple of customers
 			repository.save(Customer("Jack", "Bauer"))
 			repository.save(Customer("Chloe", "O'Brian"))
-			repository.save(Customer("Kim", "Bauer"))
-			repository.save(Customer("David", "Palmer"))
-			repository.save(Customer("Michelle", "Dessler"))
+			repository.save(Customer( "Kim", "Bauer"))
+			repository.save(Customer( "David", "Palmer"))
+			repository.save(Customer( "Michelle", "Dessler"))
 
 			// fetch all customers
 			log.info("Customers found with findAll():")

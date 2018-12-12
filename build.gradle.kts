@@ -13,8 +13,8 @@ plugins {
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.jpa") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.spring") version kotlinVersion
-
 }
+
 application {
     mainClassName = "ru.Application.kt"
 }
@@ -23,8 +23,8 @@ group = "ru.steklopod"
 
 repositories {
     mavenLocal()
-    mavenCentral()
     jcenter()
+    mavenCentral()
     gradlePluginPortal()
 }
 
@@ -33,23 +33,27 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-jetty")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-data-rest")
-    implementation("com.h2database:h2")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(module = "junit") }
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
     // Jackson Dependencies
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("com.fasterxml.jackson.core:jackson-annotations")
-    implementation("com.fasterxml.jackson.core:jackson-core")
     implementation("com.fasterxml.jackson.core:jackson-databind")
-
+    implementation("com.fasterxml.jackson.core:jackson-core")
     runtime("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
     runtime("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
-    runtime("com.fasterxml.jackson.module:jackson-module-kotlin")
-    runtime("com.h2database:h2:1.4.197")
+
+//    runtime("com.h2database:h2:1.4.197")
+    runtime("com.h2database:h2")
+    compile("com.zaxxer:HikariCP:3.2.0")
+
+    compile("org.springframework.boot:spring-boot-devtools")
+
+    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation("org.jetbrains.kotlin:kotlin-reflect")
 }
 
 

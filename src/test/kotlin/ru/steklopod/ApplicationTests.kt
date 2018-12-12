@@ -10,6 +10,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.test.web.client.getForObject
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
+//@DataJpaTest
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
 class ApplicationTests(@Autowired private val restTemplate: TestRestTemplate) {
