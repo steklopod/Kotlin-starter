@@ -8,10 +8,14 @@ import org.springframework.context.annotation.Bean
 import ru.steklopod.Customer
 import ru.steklopod.CustomerRepository
 
+fun main(args: Array<String>) {
+	runApplication<Application>(*args)
+}
+
 @SpringBootApplication
 class Application {
 
-	private val log = LoggerFactory.getLogger(Application::class.java)
+	private val log = LoggerFactory.getLogger(this::class.java)
 
 	@Bean
 	fun init(repository: CustomerRepository) = CommandLineRunner {
@@ -44,8 +48,4 @@ class Application {
 			log.info("")
 	}
 
-}
-
-fun main(args: Array<String>) {
-	runApplication<Application>(*args)
 }
