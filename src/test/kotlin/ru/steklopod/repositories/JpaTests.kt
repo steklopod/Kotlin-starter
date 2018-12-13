@@ -25,6 +25,11 @@ internal class JpaTests(
 
     @BeforeAll
     fun setup() {
+        // repository.apply {
+        //            save(Customer("Vladimir", "Putin"))
+        //            save(Customer("Nikolay", "Eltsin"))
+        //            save(Customer("Dima", "Koltovich"))
+        //                  }
     }
 
     @Test
@@ -39,7 +44,6 @@ internal class JpaTests(
         log.info("Customer found with findById(1L):\n--------------------------------")
         repository.findById(1L)
             .ifPresent { log.info(it.toString()) }
-
     }
 
     @Test
@@ -48,7 +52,6 @@ internal class JpaTests(
         repository.findByLastName("Putin")
             .forEach { log.info(it.toString()) }
     }
-
 
 }
 

@@ -1,8 +1,5 @@
 {
-  "someUnUsefullData": "blah-blah",
-  "data": {
-    "firstName": "Jack",
-    "lastName": "Bauer",
-    "id": 1
-  }
+  "firstName": "Vladimir",
+  "lastName": "Putin",
+  "id": 1
 }
