@@ -43,14 +43,11 @@ internal class ApplicationTests(
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
         val fileCustomerJson = ClassPathResource("${JSON_RESOURSCE_FOLDER}customer.json").file
-
         val reader = mapper.readerFor(Customer::class.java)
+
         val customereNode = mapper.readTree(toJsonString(fileCustomerJson)).get("data")
-
         customer = reader.readValue(customereNode)
-        println("customer: $customer")
     }
-
 
     @Test
     fun findAll() {
