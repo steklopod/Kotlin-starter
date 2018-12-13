@@ -1,6 +1,6 @@
 package ru
 
-import org.slf4j.LoggerFactory
+import org.slf4j.LoggerFactory.getLogger
 import org.springframework.boot.CommandLineRunner
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
@@ -14,30 +14,27 @@ fun main(args: Array<String>) {
 
 @SpringBootApplication
 class Application {
-
-    private val log = LoggerFactory.getLogger(this::class.java)
+    private val log = getLogger(this::class.java)
 
     @Bean
     fun init(repository: CustomerRepository) = CommandLineRunner {
 
         repository.apply {
-            save(Customer("Jack", "Bauer"))
-            save(Customer("Chloe", "O'Brian"))
-            save(Customer("Kim", "Bauer"))
-            save(Customer("David", "Palmer"))
-            save(Customer("Michelle", "Dessler"))
+            save(Customer("Vladimir", "Putin"))
+            save(Customer("Nikolay", "Eltsin"))
+            save(Customer("Dima", "Koltovich"))
 
             log.info("Customers found with findAll(): \n-------------------------------")
-            findAll().forEach { log.info(it.toString()) }
+            findAll()
+                .forEach { log.info(it.toString()) }
 
-            val customer = findById(1L)
-            customer.ifPresent {
-                log.info("Customer found with findById(1L):\n--------------------------------")
-                log.info(it.toString())
-            }
+            log.info("Customer found with findById(1L):\n--------------------------------")
+            findById(1L)
+                .ifPresent { log.info(it.toString()) }
 
             log.info("Customer found with findByLastName('Bauer'):\n--------------------------------------------")
-            findByLastName("Bauer").forEach { log.info(it.toString()) }
+            findByLastName("Putin")
+                .forEach { log.info(it.toString()) }
         }
     }
 
