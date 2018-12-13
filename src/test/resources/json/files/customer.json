@@ -1,5 +1,8 @@
 {
-  "firstName": "Vladimir",
-  "lastName": "Putin",
-  "id": 1
+  "fake_data": "blah-blah",
+  "data": {
+    "firstName": "Vladimir",
+    "lastName": "Putin",
+    "id": 1
+  }
 }
