@@ -9,43 +9,36 @@ import ru.steklopod.model.Customer
 import ru.steklopod.repositories.CustomerRepository
 
 fun main(args: Array<String>) {
-	runApplication<Application>(*args)
+    runApplication<Application>(*args)
 }
 
 @SpringBootApplication
 class Application {
 
-	private val log = LoggerFactory.getLogger(this::class.java)
+    private val log = LoggerFactory.getLogger(this::class.java)
 
-	@Bean
-	fun init(repository: CustomerRepository) = CommandLineRunner {
-			// save a couple of customers
-			repository.save(Customer("Jack", "Bauer"))
-			repository.save(Customer("Chloe", "O'Brian"))
-			repository.save(Customer( "Kim", "Bauer"))
-			repository.save(Customer( "David", "Palmer"))
-			repository.save(Customer( "Michelle", "Dessler"))
+    @Bean
+    fun init(repository: CustomerRepository) = CommandLineRunner {
 
-			// fetch all customers
-			log.info("Customers found with findAll():")
-			log.info("-------------------------------")
-			repository.findAll().forEach { log.info(it.toString()) }
-			log.info("")
+        repository.apply {
+            save(Customer("Jack", "Bauer"))
+            save(Customer("Chloe", "O'Brian"))
+            save(Customer("Kim", "Bauer"))
+            save(Customer("David", "Palmer"))
+            save(Customer("Michelle", "Dessler"))
 
-			// fetch an individual customer by ID
-			val customer = repository.findById(1L)
-			customer.ifPresent {
-				log.info("Customer found with findById(1L):")
-				log.info("--------------------------------")
-				log.info(it.toString())
-				log.info("")
-			}
+            log.info("Customers found with findAll(): \n-------------------------------")
+            findAll().forEach { log.info(it.toString()) }
 
-			// fetch customers by last name
-			log.info("Customer found with findByLastName('Bauer'):")
-			log.info("--------------------------------------------")
-			repository.findByLastName("Bauer").forEach { log.info(it.toString()) }
-			log.info("")
-	}
+            val customer = findById(1L)
+            customer.ifPresent {
+                log.info("Customer found with findById(1L):\n--------------------------------")
+                log.info(it.toString())
+            }
+
+            log.info("Customer found with findByLastName('Bauer'):\n--------------------------------------------")
+            findByLastName("Bauer").forEach { log.info(it.toString()) }
+        }
+    }
 
 }

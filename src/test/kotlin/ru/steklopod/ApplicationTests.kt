@@ -3,10 +3,10 @@ package ru.steklopod
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.junit.jupiter.api.Assertions.assertTrue
 import org.junit.jupiter.api.BeforeAll
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.TestInstance
+import org.junit.jupiter.api.TestInstance.Lifecycle.PER_CLASS
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient
@@ -24,7 +24,7 @@ import java.nio.file.Files
 
 @ExtendWith(SpringExtension::class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@TestInstance(TestInstance.Lifecycle.PER_CLASS)
+@TestInstance(PER_CLASS)
 @AutoConfigureWebTestClient
 internal class ApplicationTests(
     @Autowired private val restTemplate: TestRestTemplate,
@@ -43,13 +43,12 @@ internal class ApplicationTests(
         mapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
 
         val fileCustomerJson = ClassPathResource("${JSON_RESOURSCE_FOLDER}customer.json").file
-        assertTrue(fileCustomerJson.exists())
 
-        val readerResp = mapper.readerFor(Customer::class.java)
-        val responseNode = mapper.readTree(toJsonString(fileCustomerJson)).get("data")
+        val reader = mapper.readerFor(Customer::class.java)
+        val customereNode = mapper.readTree(toJsonString(fileCustomerJson)).get("data")
 
-        customer = readerResp.readValue(responseNode)
-        println("customer: $customer \n")
+        customer = reader.readValue(customereNode)
+        println("customer: $customer")
     }
 
 
