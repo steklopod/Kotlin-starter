@@ -1,4 +1,4 @@
-package ru.steklopod
+package ru.steklopod.controller
 
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
@@ -26,7 +26,7 @@ import java.nio.file.Files
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @TestInstance(PER_CLASS)
 @AutoConfigureWebTestClient
-internal class ApplicationTests(
+internal class ControllerTest(
     @Autowired private val restTemplate: TestRestTemplate,
     @Autowired private val webClient: WebTestClient,
     @Autowired private val mapper: ObjectMapper
@@ -36,7 +36,9 @@ internal class ApplicationTests(
     val URL = "/customers"
     val JSON_RESOURSCE_FOLDER = "json/files/"
     val content =
-        """[{"firstName":"Jack","lastName":"Bauer","id":1},{"firstName":"Chloe","lastName":"O'Brian","id":2},{"firstName":"Kim","lastName":"Bauer","id":3},{"firstName":"David","lastName":"Palmer","id":4},{"firstName":"Michelle","lastName":"Dessler","id":5}]"""
+        """[{"firstName":"Vladimir","lastName":"Putin","id":1},{"firstName":"Nikolay","lastName":"Eltsin","id":2},{"firstName":"Dima","lastName":"Koltovich","id":3}]"""
+
+    private fun toJsonString(fileResponse: File) = String(Files.readAllBytes(fileResponse.toPath()))
 
     @BeforeAll
     fun setup() {
@@ -63,6 +65,7 @@ internal class ApplicationTests(
             .expectStatus().isOk
             .expectBodyList(Customer::class.java)
     }
+
+
 }
 
-internal fun toJsonString(fileResponse: File) = String(Files.readAllBytes(fileResponse.toPath()))
