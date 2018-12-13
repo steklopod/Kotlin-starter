@@ -4,7 +4,7 @@ import org.gradle.internal.impldep.org.junit.experimental.categories.Categories.
 import org.gradle.internal.impldep.org.junit.platform.launcher.EngineFilter.includeEngines
 
 plugins {
-    val kotlinVersion = "1.3.10"
+    val kotlinVersion = "1.3.11"
     base
     java
     application
@@ -35,8 +35,6 @@ dependencies {
 
     testImplementation("org.springframework.boot:spring-boot-starter-webflux")
     testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(module = "junit") }
-
-
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
