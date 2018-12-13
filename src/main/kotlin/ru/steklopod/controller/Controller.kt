@@ -15,7 +15,7 @@ class Controller(private val repository: CustomerRepository) {
 
     @RequestMapping("/raiseError")
     fun raiseError() {
-        throw IllegalArgumentException("This shouldn't have happened")
+        throw IllegalArgumentException("Упс. Ты получил ошибку.")
     }
 
     @ExceptionHandler(IllegalArgumentException::class)

@@ -32,9 +32,11 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web") { exclude(module = "spring-boot-starter-tomcat") }
     implementation("org.springframework.boot:spring-boot-starter-jetty")
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
-    implementation("org.springframework.boot:spring-boot-starter-data-rest")
 
+    testImplementation("org.springframework.boot:spring-boot-starter-webflux")
     testImplementation("org.springframework.boot:spring-boot-starter-test") { exclude(module = "junit") }
+
+
     testImplementation("org.junit.jupiter:junit-jupiter-api")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine")
 
@@ -46,9 +48,8 @@ dependencies {
     runtime("com.fasterxml.jackson.datatype:jackson-datatype-jdk8")
     runtime("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
 
-//    runtime("com.h2database:h2:1.4.197")
     runtime("com.h2database:h2")
-    compile("com.zaxxer:HikariCP:3.2.0")
+//    compile("com.zaxxer:HikariCP:3.2.0")
 
     compile("org.springframework.boot:spring-boot-devtools")
 
